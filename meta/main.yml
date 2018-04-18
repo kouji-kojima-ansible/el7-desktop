@@ -18,4 +18,4 @@ galaxy_info:
     - desktop
 
 dependencies:
-    - kouji-kojima.el7-init
+    - kouji-kojima-ansible.el7-init
