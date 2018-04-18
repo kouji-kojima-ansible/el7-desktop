@@ -1,0 +1,32 @@
+#  <-- tasks file can include smaller files if warranted
+
+- name: yum install epel-release-latest-7.noarch.rpm
+  yum:
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    state: present
+
+- name: install the 'Server with GUI' package group
+  yum:
+    name: "@Server with GUI"
+    state: present
+
+- name: install the latest version of xrdp
+  yum:
+    name: xrdp
+    state: latest
+
+- name: install the latest version of tigervnc-server
+  yum:
+    name: tigervnc-server
+    state: latest
+
+- name: restart xrdp
+  systemd:
+    name: xrdp
+    state: restarted
+    daemon_reload: yes
+
+- name: set ec2-user password
+  user:
+    name: "ec2-user"
+    password: "{{ '{{ec2-pass}}'|password_hash('sha512') }}"
