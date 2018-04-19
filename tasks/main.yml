@@ -32,10 +32,7 @@
     skip_broken: yes
 
 - name: install the 'Server with GUI' package group
-  yum:
-    name: "@Server with GUI"
-    state: present
-    skip_broken: yes
+  shell: yum groupinstall -y "Server with GUI" --skip-broken
 
 - name: install the latest version of tigervnc-server
   yum:
