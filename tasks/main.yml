@@ -5,7 +5,7 @@
   register: epel_repofile_result
 
 - name: install EPEL repo.
-  shell: yum install "{{ epel_repo_url }}"
+  shell: yum install -y "{{ epel_repo_url }}"
   when: not epel_repofile_result.stat.exists
  
 #- name: install EPEL repo.
