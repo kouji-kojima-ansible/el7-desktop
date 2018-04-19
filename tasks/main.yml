@@ -61,4 +61,4 @@
 - name: set ec2-user password
   user:
     name: "ec2-user"
-    password: "{{ '{{ec2-pass}}'|password_hash('sha512') }}"
+    password: "{{ ec2-pass | password_hash('sha512') }}"
