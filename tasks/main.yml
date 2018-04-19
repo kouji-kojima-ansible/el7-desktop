@@ -25,14 +25,17 @@
 #    state: present
 #  when: not epel_repofile_result.stat.exists
 
+- name: install the 'GNOME Desktop' package group
+  shell: yum groupinstall -y "GNOME Desktop" --skip-broken
+
+#- name: install the 'Server with GUI' package group
+#  shell: yum groupinstall -y "Server with GUI" --skip-broken
+
 - name: install the latest version of xrdp
   yum:
     name: xrdp
     state: latest
     skip_broken: yes
-
-- name: install the 'Server with GUI' package group
-  shell: yum groupinstall -y "Server with GUI" --skip-broken
 
 - name: install the latest version of tigervnc-server
   yum:
@@ -58,7 +61,16 @@
     state: started
     daemon_reload: yes
 
+- name: chcon
+  shell: chcon --type=bin_t /usr/sbin/xrdp; chcon --type=bin_t /usr/sbin/xrdp-sesman
+
+- name: enable xrdp
+  systemd:
+    name: firewalld
+    enabled: yes
+    daemon_reload: yes
+
 - name: set ec2-user password
   user:
     name: "ec2-user"
-    password: "{{ ec2-pass | password_hash('sha512') }}"
+    password: "{{ '{{ec2-pass}}' | password_hash('sha512') }}"
