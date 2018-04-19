@@ -1,29 +1,53 @@
 #  <-- tasks file can include smaller files if warranted
 
-- name: yum install epel-release-latest-7.noarch.rpm
+- name: Check if EPEL repo is already configured.
+  stat: path={{ epel_repofile_path }}
+  register: epel_repofile_result
+ 
+- name: Install EPEL repo.
   yum:
-    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    name: "{{ epel_repo_url }}"
     state: present
+  register: result
+  when: not epel_repofile_result.stat.exists
+ 
+- name: Import EPEL GPG key.
+  rpm_key:
+    key: "{{ epel_repo_gpg_key_url }}"
+    state: present
+  when: not epel_repofile_result.stat.exists
+
+- name: install the latest version of xrdp, tigervnc-server
+  yum:
+    name: "{{ item }}"
+    state: latest
+    skip_broken: yes
+    with_items:
+      - xrdp
+      - tigervnc-server
 
 - name: install the 'Server with GUI' package group
   yum:
     name: "@Server with GUI"
     state: present
+    skip_broken: yes
 
-- name: install the latest version of xrdp
-  yum:
-    name: xrdp
-    state: latest
+- name: disabled firewalld
+  systemd:
+    name: firewalld
+    enabled: no
+    daemon_reload: yes
 
-- name: install the latest version of tigervnc-server
-  yum:
-    name: tigervnc-server
-    state: latest
+- name: stop firewalld
+  systemd:
+    name: firewalld
+    state: stopped
+    daemon_reload: yes
 
-- name: restart xrdp
+- name: start xrdp
   systemd:
     name: xrdp
-    state: restarted
+    state: started
     daemon_reload: yes
 
 - name: set ec2-user password
