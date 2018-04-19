@@ -16,7 +16,7 @@
 #  when: not epel_repofile_result.stat.exists
 
 - name: import EPEL GPG key.
-  shell: rpm --import "{{ epel_repo_gpg_key_url }}" --httpproxy {{ proxy_host }} --httpport {{ proxy_port }}
+  shell: rpm --import "{{ epel_repo_gpg_key_url }}"
   when: not epel_repofile_result.stat.exists
 
 #- name: import EPEL GPG key.
