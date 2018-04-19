@@ -26,7 +26,10 @@
 #  when: not epel_repofile_result.stat.exists
 
 - name: install the 'GNOME Desktop' package group
-  shell: yum groupinstall -y "GNOME Desktop" --skip-broken
+  yum:
+    name: "@^GNOME Desktop"
+    state: present
+    skip_broken: yes
 
 #- name: install the 'Server with GUI' package group
 #  shell: yum groupinstall -y "Server with GUI" --skip-broken
