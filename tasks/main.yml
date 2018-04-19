@@ -25,19 +25,22 @@
 #    state: present
 #  when: not epel_repofile_result.stat.exists
 
-- name: install the latest version of xrdp, tigervnc-server
+- name: install the latest version of xrdp
   yum:
-    name: "{{ item }}"
+    name: xrdp
     state: latest
     skip_broken: yes
-    with_items:
-      - xrdp
-      - tigervnc-server
 
 - name: install the 'Server with GUI' package group
   yum:
     name: "@Server with GUI"
     state: present
+    skip_broken: yes
+
+- name: install the latest version of tigervnc-server
+  yum:
+    name: tigervnc-server
+    state: latest
     skip_broken: yes
 
 - name: disabled firewalld
