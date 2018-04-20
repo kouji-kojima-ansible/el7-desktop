@@ -38,32 +38,50 @@
     state: present
     skip_broken: yes
 
-#- name: install the 'Server with GUI' package group
-#  shell: yum groupinstall -y "Server with GUI" --skip-broken
-
-- name: downgrade xorg-x11-server-Xorg 1.19.3-11.el7_4.2
+- name: install the latest version of git
   yum:
-    name: xorg-x11-server-Xorg-1.19.3-11.el7_4.2
-    allow_downgrade: yes
-
-- name: install the latest version of xrdp
-  yum:
-    name: xrdp
+    name: git
     state: latest
-    skip_broken: yes
 
-- name: install 1.8.0-2.el7_4 of tigervnc-server
+- name: install the latest version of tigervnc-server
   yum:
-    name: tigervnc-server-1.8.0-2.el7_4
-    state: present
+    name: tigervnc-server
+    state: latest
 
-- name: add exclude xorg-x11-server-Xorg,tigervnc-server to yum.conf
-  lineinfile:
-    dest: /etc/yum.conf
-    state: present
-    regexp: "^exclude=.*$"
-    insertafter: EOF
-    line: "exclude=xorg-x11-server-Xorg,tigervnc-server"
+- name: git clone X11RDP-RH-Matic
+  become: yes
+  become_user: ec2-user
+  git:
+    repo: https://github.com/metalefty/X11RDP-RH-Matic.git
+    dest: /home/ec2-user/
+    version: master
+
+- name: execute X11RDP-RH-Matic.sh
+  shell: /home/ec2-user/X11RDP-RH-Matic/X11RDP-RH-Matic.sh
+
+#- name: downgrade xorg-x11-server-Xorg 1.19.3-11.el7_4.2
+#  yum:
+#    name: xorg-x11-server-Xorg-1.19.3-11.el7_4.2
+#    allow_downgrade: yes
+
+#- name: install the latest version of xrdp
+#  yum:
+#    name: xrdp
+#    state: latest
+#    skip_broken: yes
+
+#- name: install 1.8.0-2.el7_4 of tigervnc-server
+#  yum:
+#    name: tigervnc-server-1.8.0-2.el7_4
+#    state: present
+
+#- name: add exclude xorg-x11-server-Xorg,tigervnc-server to yum.conf
+#  lineinfile:
+#    dest: /etc/yum.conf
+#    state: present
+#    regexp: "^exclude=.*$"
+#    insertafter: EOF
+#    line: "exclude=xorg-x11-server-Xorg,tigervnc-server"
 
 - name: disabled firewalld
   systemd:
