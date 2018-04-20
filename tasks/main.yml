@@ -25,12 +25,12 @@
 #    state: present
 #  when: not epel_repofile_result.stat.exists
 
-- name: yum epel-release
-  shell: yum install -y epel-release
-  ignore_errors: yes
+#- name: yum epel-release
+#  shell: yum install -y epel-release
+#  ignore_errors: yes
 
-- name: set rhui-REGION-rhel-server-releases.skip_if_unavailable=true
-  shell: yum-config-manager --save --setopt=rhui-REGION-rhel-server-releases.skip_if_unavailable=true
+#- name: set rhui-REGION-rhel-server-releases.skip_if_unavailable=true
+#  shell: yum-config-manager --save --setopt=rhui-REGION-rhel-server-releases.skip_if_unavailable=true
 
 - name: install the 'Server with GUI' package group
   yum:
