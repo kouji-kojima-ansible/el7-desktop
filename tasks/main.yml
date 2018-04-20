@@ -25,14 +25,26 @@
 #    state: present
 #  when: not epel_repofile_result.stat.exists
 
-- name: install the 'Cinnamon Desktop' package group
+- name: yum epel-release
+  shell: yum install -y epel-release
+  ignore_errors: yes
+
+- name: set rhui-REGION-rhel-server-releases.skip_if_unavailable=true
+  shell: yum-config-manager --save --setopt=rhui-REGION-rhel-server-releases.skip_if_unavailable=true
+
+- name: install the 'Server with GUI' package group
   yum:
-    name: "@^Cinnamon Desktop"
+    name: "@^Server with GUI"
     state: present
     skip_broken: yes
 
 #- name: install the 'Server with GUI' package group
 #  shell: yum groupinstall -y "Server with GUI" --skip-broken
+
+- name: downgrade xorg-x11-server-Xorg 1.19.3-11.el7_4.2
+  yum:
+    name: xorg-x11-server-Xorg-1.19.3-11.el7_4.2
+    allow_downgrade: yes
 
 - name: install the latest version of xrdp
   yum:
@@ -40,11 +52,18 @@
     state: latest
     skip_broken: yes
 
-- name: install the latest version of tigervnc-server
+- name: install 1.8.0-2.el7_4 of tigervnc-server
   yum:
-    name: tigervnc-server
-    state: latest
-    skip_broken: yes
+    name: tigervnc-server-1.8.0-2.el7_4
+    state: present
+
+- name: add exclude xorg-x11-server-Xorg,tigervnc-server to yum.conf
+  lineinfile:
+    dest: /etc/yum.conf
+    state: present
+    regexp: "^exclude=.*$"
+    insertafter: EOF
+    line: "exclude=xorg-x11-server-Xorg,tigervnc-server"
 
 - name: disabled firewalld
   systemd:
@@ -76,4 +95,4 @@
 - name: set ec2-user password
   user:
     name: "ec2-user"
-    password: "{{ '{{ec2-pass}}' | password_hash('sha512') }}"
+    password: "{{ ec2-pass }}"
