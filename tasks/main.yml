@@ -59,7 +59,7 @@
 - name: execute X11RDP-RH-Matic.sh
   become: yes
   become_user: ec2-user
-  shell: /home/ec2-user/X11RDP-RH-Matic/X11RDP-RH-Matic.sh
+  shell: cd /home/ec2-user/X11RDP-RH-Matic; ./X11RDP-RH-Matic.sh
 
 #- name: downgrade xorg-x11-server-Xorg 1.19.3-11.el7_4.2
 #  yum:
