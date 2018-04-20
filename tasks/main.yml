@@ -53,7 +53,7 @@
   become_user: ec2-user
   git:
     repo: https://github.com/metalefty/X11RDP-RH-Matic.git
-    dest: /home/ec2-user/
+    dest: /home/ec2-user/X11RDP-RH-Matic
     version: master
 
 - name: execute X11RDP-RH-Matic.sh
