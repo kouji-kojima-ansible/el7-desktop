@@ -1,5 +1,5 @@
 #  <-- variables associated with this role
-ec2-pass: ec2-pass
+ec2-pass: password
 
 epel_repo_url: "http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm"
 epel_repo_gpg_key_url: "http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7"
