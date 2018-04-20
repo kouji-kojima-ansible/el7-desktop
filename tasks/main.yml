@@ -43,19 +43,6 @@
     name: git
     state: latest
 
-#- name: git clone X11RDP-RH-Matic
-#  become: yes
-#  become_user: ec2-user
-#  git:
-#    repo: https://github.com/metalefty/X11RDP-RH-Matic.git
-#    dest: /home/ec2-user/X11RDP-RH-Matic
-#    version: master
-#
-#- name: execute X11RDP-RH-Matic.sh
-#  become: yes
-#  become_user: ec2-user
-#  shell: cd /home/ec2-user/X11RDP-RH-Matic; ./X11RDP-RH-Matic.sh
-
 - name: downgrade xorg-x11-server-Xorg 1.19.3-11.el7_4.2
   yum:
     name: xorg-x11-server-Xorg-1.19.3-11.el7_4.2
