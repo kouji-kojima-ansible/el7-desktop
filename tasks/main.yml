@@ -58,10 +58,7 @@
 #    allow_downgrade: yes
 
 - name: get xrdp-0.9.6-2.el7.x86_64.rpm
-  get_url:
-    url: "{{ xrdp_url }}"
-    dest: /tmp/
-    force: yes
+  shell: wget "{{ xrdp_url }}"  -P /tmp
   register: downloaded_xrdp
 
 - name: yum localinstall xrdp-0.9.6-2.el7.x86_64.rpm
