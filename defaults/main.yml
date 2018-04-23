@@ -4,5 +4,10 @@ epel_repo_url: "http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarc
 epel_repo_gpg_key_url: "http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7"
 epel_repofile_path: "/etc/yum.repos.d/epel.repo"
 
+xorgxrdp_testing_url: "http://dl.fedoraproject.org/pub/epel/testing/7/x86_64/Packages/x/xorgxrdp-0.2.6-2.el7.x86_64.rpm"
+xorgxrdp_url: "http://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/x/xorgxrdp-0.2.6-2.el7.x86_64.rpm"
+
+xrdp_url: "https://kojipkgs.fedoraproject.org//packages/xrdp/0.9.6/2.el7/x86_64/xrdp-0.9.6-2.el7.x86_64.rpm"
+
 # ec2-pass を 暗号化
 ec2_pass: '$6$SALTsalt$gMcJaXuOTxhk/ObN2nqBo/WwKhaHGa6QO3nR1goE7l4.23fgnEBBUq3Isq/RBguaM7do5XY0DkpuXslzexDFj.'
