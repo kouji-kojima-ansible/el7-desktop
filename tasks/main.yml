@@ -46,7 +46,7 @@
 - name: get xorgxrdp-0.2.6-2.el7.x86_64.rpm
   get_url:
     url: "{{ xorgxrdp_testing_url }}"
-    dest: /tmp/
+    dest: /tmp
     force: yes
   register: downloaded_xorgxrdp
 
