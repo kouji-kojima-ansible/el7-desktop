@@ -43,7 +43,7 @@
     name: git
     state: latest
 
-- name: get xorgxrdp-0.2.6-2.el7.x86_64.rpm
+- name: wget xorgxrdp-0.2.6-2.el7.x86_64.rpm
   shell: wget "{{ xorgxrdp_testing_url }}"  -P /tmp
   register: downloaded_xorgxrdp
 
