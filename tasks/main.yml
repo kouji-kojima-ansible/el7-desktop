@@ -9,6 +9,10 @@
   shell: yum install -y "{{ epel_repo_url }}"
   when: not epel_repofile_result.stat.exists
 
+- name: import EPEL GPG key.
+  shell: rpm --import "{{ epel_repo_gpg_key_url }}"
+  when: not epel_repofile_result.stat.exists
+
 # Server with GUI
 - name: install the 'Server with GUI' package group
   yum:

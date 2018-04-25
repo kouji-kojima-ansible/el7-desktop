@@ -1,6 +1,8 @@
 #  <-- variables associated with this role
 
 epel_repo_url: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm"
+epel_repo_gpg_key_url: "http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7"
+epel_repofile_path: "/etc/yum.repos.d/epel.repo"
 
 # ec2-pass を 暗号化
 ec2_pass: '$6$SALTsalt$gMcJaXuOTxhk/ObN2nqBo/WwKhaHGa6QO3nR1goE7l4.23fgnEBBUq3Isq/RBguaM7do5XY0DkpuXslzexDFj.'
