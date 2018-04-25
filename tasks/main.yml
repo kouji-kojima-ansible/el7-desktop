@@ -21,10 +21,10 @@
     skip_broken: yes
 
 # Downgrade xorg-x11-server-Xorg
-- name: downgrade xorg-x11-server-Xorg 1.19.3-11.el7_4.2
+- name: install the version 1.19.3-11.el7_4.2 of xorg-x11-server-Xorg
   shell: yum downgrade -y xorg-x11-server-Xorg-1.19.3-11.el7_4.2
 
-- name: add exclude xorg-x11-server-Xorg,tigervnc-server to yum.conf
+- name: add exclude xorg-x11-server-Xorg to yum.conf
   lineinfile:
     dest: /etc/yum.conf
     state: present
