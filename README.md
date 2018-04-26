@@ -8,6 +8,13 @@ Install role
 ansible-galaxy install kouji-kojima-ansible.el7-desktop --force
 ```
 
+
+Dependencies
+------------
+
+kouji-kojima-ansible.el7-init
+
+
 Process details
 ---------------
 
