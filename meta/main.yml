@@ -2,8 +2,10 @@
 galaxy_info:
   author: kouji kojima
   description: el7-desktop
+
   Some suggested licenses:
   - Apache
+
   license: Apache License Version 2.0
 
   min_ansible_version: 2.5.0
@@ -14,8 +16,8 @@ galaxy_info:
     - 7
 
   galaxy_tags:
-    - EL7
-    - desktop
+  - EL7
+  - desktop
 
 dependencies:
-    - kouji-kojima-ansible.el7-init
+- kouji-kojima-ansible.el7-init
