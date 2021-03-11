@@ -65,7 +65,7 @@
 - name: disabled firewalld
   systemd:
     name: firewalld
-    enabled: no
+    enabled: yes
     daemon_reload: yes
 
 - name: stop firewalld
